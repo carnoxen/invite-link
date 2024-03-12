@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("user")
+    @PostMapping
     public String postUser(@RequestBody UserForm userForm, @RequestBody String invitation) {
         User user = userForm.toUser();
         user.setInvitation(invitation);
@@ -23,7 +23,7 @@ public class UserController {
         return "user inserted";
     }
 
-    @GetMapping("user")
+    @GetMapping
     public String getUser(@RequestParam String invitation) {
         Optional<User> userOrElse = userService.selectUser(invitation);
         if (userOrElse.isPresent()) {
